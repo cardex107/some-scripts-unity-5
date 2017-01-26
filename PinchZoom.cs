@@ -8,6 +8,8 @@ public class PinchZoom : MonoBehaviour
 
 	void Update() 
 	{
+		Camera camera = gameObject.GetComponent<Camera> ();
+
 		if (Input.touchCount == 2) 
 		{
 			UnityEngine.Touch touch0 = Input.GetTouch(0);
@@ -21,10 +23,10 @@ public class PinchZoom : MonoBehaviour
 
 			float deltaMagDiff = prev_TouchDeltaMag - current_TouchDeltaMag;
 
-			GetComponent<Camera>().orthographicSize += deltaMagDiff * orthographicZoomSensitivity;
-			GetComponent<Camera>().fieldOfView += deltaMagDiff * perspectiveZoomSensitivity;
-			GetComponent<Camera>().orthographicSize = Mathf.Max(GetComponent<Camera>().orthographicSize, 0.1f);
-			GetComponent<Camera>().fieldOfView = Mathf.Clamp(GetComponent<Camera>().fieldOfView, 0.1f, 179.9f);
+			camera.orthographicSize += deltaMagDiff * orthographicZoomSensitivity;
+			camera.fieldOfView += deltaMagDiff * perspectiveZoomSensitivity;
+			camera.orthographicSize = Mathf.Max(camera.orthographicSize, 0.1f);
+			camera.fieldOfView = Mathf.Clamp(camera.fieldOfView, 0.1f, 179.9f);
 		}
 	}
 
